@@ -1,6 +1,4 @@
-copy
 logging
-logging.config
 multiprocessing
 pprint
 socket
