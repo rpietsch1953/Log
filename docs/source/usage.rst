@@ -30,8 +30,9 @@ normally imported as
 
 .. code-block:: python
 
+    import logging
     from pcs_alog.Logp import LogP
 
 
-Check out :doc:`examples`
+
 

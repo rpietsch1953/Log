@@ -29,5 +29,4 @@ Table of contents
 .. toctree::
    usage
    api
-   examples
-
+   

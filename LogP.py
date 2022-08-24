@@ -39,8 +39,9 @@ import netifaces
 import setproctitle
 
 
-__updated__ = '111.220824164237'
+__updated__ = '112.220824165438'
 Version = f"1.6.{__updated__}"
+
 
 _KEEP = 'keep'
 _KEEP_WARN = 'keep-warn'
