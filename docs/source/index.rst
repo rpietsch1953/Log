@@ -21,7 +21,7 @@ Source
 Detailed documentation
 ----------------------
 
-   The detailed documentation is on `Read the Docs <https://log.readthedocs.io/en/latest/index.html>`_
+   The detailed documentation is on `Read the Docs <https://pcs-log.readthedocs.io/en/latest/index.html>`_
 
 Table of contents  
 -----------------

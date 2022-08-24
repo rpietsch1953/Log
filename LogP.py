@@ -3,7 +3,23 @@
 """
     Set up a logging-environment for daemons or console-programs
 
+Copyright (c) 2022 Ing. Rainer Pietsch <r.pietsch@pcs-at.com>
+
+Detailed docs at <https://pcs-log.readthedocs.io/en/latest/index.html>
+
+Source at <https://github.com/rpietsch1953/Log>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation, version 3.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.
+
 Usage:
+------
 
 .. code-block:: python
 
@@ -39,7 +55,7 @@ import netifaces
 import setproctitle
 
 
-__updated__ = '112.220824165438'
+__updated__ = '113.220824173108'
 Version = f"1.6.{__updated__}"
 
 
