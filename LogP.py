@@ -55,7 +55,7 @@ import netifaces
 import setproctitle
 
 
-__updated__ = '123.220827173350'
+__updated__ = '124.220827173656'
 Version = f"1.6.{__updated__}"
 
 

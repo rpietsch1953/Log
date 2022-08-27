@@ -25,4 +25,5 @@ for l in Template:
         Index.append(l)
 with open('docs/source/index.rst','w',encoding='utf-8') as f:
     f.writelines(Index)
+print(f"Set Version: {Version}")
 

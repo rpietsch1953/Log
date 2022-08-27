@@ -8,7 +8,7 @@
 
 <div class="version">
 
-1.6.122.220827164828
+1.6.124.220827173656
 
 </div>
 
@@ -34,7 +34,7 @@
 <div role="navigation" aria-label="Page navigation">
 
   - [](#) »
-  - pcs\_log 1.6 documentation
+  - pcs\_log 1.6.124 documentation
   - 
 
 -----
@@ -49,7 +49,7 @@
 
 # Welcome to pcs\_log’s documentation\!
 
-Document version: 1.6.122.220827164828
+Document version: 1.6.124.220827173656
 
 <div class="admonition note">
 
