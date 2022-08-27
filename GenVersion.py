@@ -14,3 +14,15 @@ for l in Template:
 with open('docs/source/conf.py','w',encoding='utf-8') as f:
     f.writelines(Config)
 
+with open('docs/source/index.rst-template','r',encoding='utf-8') as f:
+    Template = f.readlines()
+
+Index = []
+for l in Template:
+    if l.startswith('|version|'):
+        Index.append(f"{Version}\n")
+    else:
+        Index.append(l)
+with open('docs/source/index.rst','w',encoding='utf-8') as f:
+    f.writelines(Index)
+
