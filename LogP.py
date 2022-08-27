@@ -55,7 +55,7 @@ import netifaces
 import setproctitle
 
 
-__updated__ = '113.220824173108'
+__updated__ = '114.220826120416'
 Version = f"1.6.{__updated__}"
 
 
@@ -840,7 +840,7 @@ class _LogP():
                         Possible values:
 
                         .. code-block:: text
-                        
+
                                 0 = ERROR and STATUS
                                 1 = MSG, WARNING, STATUS, ERROR
                                 2 = INFO, MSG, WARNING, STATUS, ERROR
@@ -850,7 +850,7 @@ class _LogP():
         :type Verbose: int, optional
         :param NoDaemon: Is this an terminal-task. Defaults to True.
                                 If this is False => I am a daemon.
-                                
+
                                 On deamons output to StdErr do not make any sense, so this is ignored
                                 and "syslog" or "logfile" is used.
 
@@ -953,8 +953,8 @@ class _LogP():
 
                                         processname,
                                         threadname,
-                                        module, 
-                                        line-no and 
+                                        module,
+                                        line-no and
                                         levelinfo
 
                                     are not within the output.
@@ -1026,16 +1026,16 @@ class _LogP():
         :param NoReset: Do not reset logger on init. Defaults to False.
 
                                 .. note::
-        
+
                                     Use with care. Could tend to mess up the logging.
-                                    
+
         :type NoReset: bool, optional
         :param translation: If given the programmer can overwrite the error-messages used.
                                     There are 2 functions to help creating this dict:
-                                    
+
                                         LogP._PrintInitTranslation()
                                         LogP._PrintActualTranslation()
-                                        
+
                                     they do exactly what their name says: they print either the
                                     default value for the translationtable or the actual value after
                                     overwriting some or all values with this dict.
