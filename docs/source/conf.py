@@ -1,5 +1,5 @@
 """ Configuration file for the Sphinx documentation builder. """
-import importlib.util
+#import importlib.util
 import pathlib
 import sys
 sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
@@ -9,11 +9,12 @@ sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-spec = importlib.util.spec_from_file_location("Version", "../../LogP.py")
-foo = importlib.util.module_from_spec(spec)
-sys.modules["Version"] = foo
-spec.loader.exec_module(foo)
-Version = foo.Version
+#spec = importlib.util.spec_from_file_location("Version", "../../LogP.py")
+#foo = importlib.util.module_from_spec(spec)
+#sys.modules["Version"] = foo
+#spec.loader.exec_module(foo)
+#Version = foo.Version
+from LogP import Version
 
 project = 'pcs_log'
 copyright = '2022, Ing. Rainer Pietsch'
