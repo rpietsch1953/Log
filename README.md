@@ -8,7 +8,7 @@
 
 <div class="version">
 
-1.6.117.220826120416
+1.6.118.220826120416
 
 </div>
 
@@ -49,7 +49,7 @@
 
 # Welcome to pcs\_log’s documentation\!
 
-Document version: 1.6.117.220826120416
+Document version: 1.6.118.220826120416
 
 <div class="admonition note">
 
