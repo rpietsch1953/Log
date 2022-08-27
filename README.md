@@ -16,8 +16,8 @@
 
 <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
 
-  - [Usage](index.html#document-usage)
-  - [LogP reference](index.html#document-api)
+  - [Usage](#document-usage)
+  - [LogP reference](#document-api)
 
 </div>
 
@@ -47,7 +47,7 @@
 
 <div id="welcome-to-pcs-log-s-documentation" class="section">
 
-# Welcome to pcs\_log’s documentation\![](#welcome-to-pcs-log-s-documentation "Permalink to this headline")
+# Welcome to pcs\_log’s documentation\!
 
 Document version: 1.6.117.220826120416
 
@@ -61,7 +61,7 @@ This project is under active development.
 
 <div id="source" class="section">
 
-## Source[](#source "Permalink to this headline")
+## Source
 
 > 
 > 
@@ -76,7 +76,7 @@ This project is under active development.
 
 <div id="detailed-documentation" class="section">
 
-## Detailed documentation[](#detailed-documentation "Permalink to this headline")
+## Detailed documentation
 
 > 
 > 
@@ -91,7 +91,7 @@ This project is under active development.
 
 <div id="table-of-contents" class="section">
 
-## Table of contents[](#table-of-contents "Permalink to this headline")
+## Table of contents
 
 <div class="toctree-wrapper compound">
 
@@ -99,13 +99,13 @@ This project is under active development.
 
 <div id="usage" class="section">
 
-### Usage[](#usage "Permalink to this headline")
+### Usage
 
 <div id="installation" class="section">
 
 <span id="id1"></span>
 
-#### Installation[](#installation "Permalink to this headline")
+#### Installation
 
 To use pcs\_log, first install it using pip:
 
@@ -123,7 +123,7 @@ To use pcs\_log, first install it using pip:
 
 <div id="use-in-your-program" class="section">
 
-#### Use in your program[](#use-in-your-program "Permalink to this headline")
+#### Use in your program
 
   - This module handles the most often used logging options:
     
@@ -162,7 +162,7 @@ normally imported as
 
 <div id="logp-reference" class="section">
 
-### LogP reference[](#logp-reference "Permalink to this headline")
+### LogP reference
 
 <div class="admonition note">
 
@@ -191,11 +191,11 @@ file-handles are deleted on daemonizing)
 </div>
 
   - *<span class="pre">class</span><span class="w">
-    </span>*<span class="sig-prename descclassname"><span class="pre">LogP.</span></span><span class="sig-name descname"><span class="pre">\_LogP</span></span>[](#LogP._LogP "Permalink to this definition")
+    </span>*<span class="sig-prename descclassname"><span class="pre">LogP.</span></span><span class="sig-name descname"><span class="pre">\_LogP</span></span>
     
       - <span class="sig-name descname"><span class="pre">PollRestart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span>
         <span class="sig-return"><span class="sig-return-icon">→</span>
-        <span class="sig-return-typehint"><span class="pre">None</span></span></span>[](#LogP._LogP.PollRestart "Permalink to this definition")  
+        <span class="sig-return-typehint"><span class="pre">None</span></span></span>  
         Prüfe ob der Logserver neu gestartet werden muss
     
     <!-- end list -->
@@ -305,7 +305,7 @@ file-handles are deleted on daemonizing)
         </span><span class="default_value"><span class="pre">None</span></span>*,
         *<span class="o"><span class="pre">\*\*</span></span><span class="n"><span class="pre">kwargs</span></span>*<span class="sig-paren">)</span>
         <span class="sig-return"><span class="sig-return-icon">→</span>
-        <span class="sig-return-typehint"><span class="pre">None</span></span></span>[](#LogP._LogP.SetupLogging "Permalink to this definition")
+        <span class="sig-return-typehint"><span class="pre">None</span></span></span>
         
         > 
         > 
@@ -739,7 +739,7 @@ file-handles are deleted on daemonizing)
     
     <!-- end list -->
     
-      - <span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span>[](#LogP._LogP.Stop "Permalink to this definition")  
+      - <span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span>  
         Stop the Log-Server
 
 </div>
