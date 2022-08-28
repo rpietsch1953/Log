@@ -10,7 +10,6 @@ sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 from LogP import Version
-Version = '1.6.124.220827173656'
 
 project = 'pcs_log'
 copyright = '2022, Ing. Rainer Pietsch'

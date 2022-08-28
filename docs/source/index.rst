@@ -7,7 +7,8 @@ Welcome to pcs_log's documentation!
 =======================================
 
 Document version:
-1.6.124.220827173656
+|version|
+
 
 .. note::
 
