@@ -1,5 +1,4 @@
 """ Configuration file for the Sphinx documentation builder. """
-#import importlib.util
 import pathlib
 import sys
 sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
@@ -15,7 +14,6 @@ project = 'pcs_log'
 copyright = '2022, Ing. Rainer Pietsch'
 author = 'Ing. Rainer Pietsch'
 release = '.'.join(Version.split('.')[:3])
-#release = '1.6'
 version = Version
 
 # -- General configuration ---------------------------------------------------

@@ -55,7 +55,7 @@ import netifaces
 import setproctitle
 
 
-__updated__ = '125.220828172229'
+__updated__ = '127.220915155807'
 Version = f"1.6.{__updated__}"
 
 
@@ -1440,11 +1440,37 @@ Output format:
             logging.getLogger().addHandler(qh)
             self.__LogServer.Run()
 
+    @property
+    def GetLogging(self) -> tuple:
+        """
+        Return logging functions
+
+        :return: The logging functions in order
+            logging.error,
+            logging.status,
+            logging.warning,
+            logging.msg,
+            logging.info,
+            logging.debug,
+            logging.trace
+            
+        :rtype: tuple
+        """
+        
+        return (partial(logging.log,_ERROR),
+                partial(logging.log,_STATUS),
+                partial(logging.log,_WARNING),
+                partial(logging.log,_MSG),
+                partial(logging.log,_INFO),
+                partial(logging.log,_DEBUG),
+                partial(logging.log,_TRACE))
+
 
 LogP = _LogP()
 logging.status = partial(logging.log, _STATUS)
 logging.msg = partial(logging.log, _MSG)
 logging.trace = partial(logging.log, _TRACE)
+
 
 ###############################################################
 # Test if __main__

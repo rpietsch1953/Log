@@ -8,7 +8,7 @@
 
 <div class="version">
 
-1.6.125.220828172229
+1.6.127.220915155807
 
 </div>
 
@@ -34,7 +34,7 @@
 <div role="navigation" aria-label="Page navigation">
 
   - [](#) »
-  - pcs\_log 1.6.125 documentation
+  - pcs\_log 1.6.127 documentation
   - 
 
 -----
@@ -49,7 +49,7 @@
 
 # Welcome to pcs\_log’s documentation\!
 
-Document version: 1.6.125.220828172229
+Document version: 1.6.127.220915155807
 
 <div class="admonition note">
 
@@ -192,6 +192,21 @@ file-handles are deleted on daemonizing)
 
   - *<span class="pre">class</span><span class="w">
     </span>*<span class="sig-prename descclassname"><span class="pre">LogP.</span></span><span class="sig-name descname"><span class="pre">\_LogP</span></span>
+    
+      - *<span class="pre">property</span><span class="w">
+        </span>*<span class="sig-name descname"><span class="pre">GetLogging</span></span>*<span class="p"><span class="pre">:</span></span><span class="w">
+        </span><span class="pre">tuple</span>*  
+        Return logging functions
+        
+          - Returns  
+            The logging functions in order logging.error,
+            logging.status, logging.warning, logging.msg, logging.info,
+            logging.debug, logging.trace
+        
+          - Return type  
+            tuple
+    
+    <!-- end list -->
     
       - <span class="sig-name descname"><span class="pre">PollRestart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span>
         <span class="sig-return"><span class="sig-return-icon">→</span>
