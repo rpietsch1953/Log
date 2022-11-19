@@ -36,7 +36,7 @@ Usage:
 
 
 
-
+import contextlib
 import copy
 import logging
 import logging.config
@@ -55,7 +55,7 @@ import netifaces
 import setproctitle
 
 
-__updated__ = '127.220915155807'
+__updated__ = '130.221119175801'
 Version = f"1.6.{__updated__}"
 
 
@@ -1453,10 +1453,10 @@ Output format:
             logging.info,
             logging.debug,
             logging.trace
-            
+
         :rtype: tuple
         """
-        
+
         return (partial(logging.log,_ERROR),
                 partial(logging.log,_STATUS),
                 partial(logging.log,_WARNING),
@@ -1470,6 +1470,41 @@ LogP = _LogP()
 logging.status = partial(logging.log, _STATUS)
 logging.msg = partial(logging.log, _MSG)
 logging.trace = partial(logging.log, _TRACE)
+
+@contextlib.contextmanager
+def OtherLogLevel(NewLevel:Union[int,str]) -> None:
+    """Set temporary other LogLevel"""
+    wDict = { 'ERROR': _ERROR,
+                'STATUS': _STATUS,
+                'WARNING': _WARNING,
+                'MSG': _MSG,
+                'INFO': _INFO,
+                'DEBUG': _DEBUG,
+                'TRACE': _TRACE}
+
+    OldLogLevel = logging.getLogger().getEffectiveLevel()
+    if isinstance(NewLevel,str):
+        NewLevel = NewLevel.upper()
+        if NewLevel in wDict:
+            NewLevel = wDict[NewLevel]
+        else:
+            NewLevel = OldLogLevel
+    logging.getLogger().setLevel(NewLevel)
+    try:
+        yield
+    finally:
+        logging.getLogger().setLevel(OldLogLevel)
+
+@contextlib.contextmanager
+def NoLogging() -> None:
+    """Set temporary loglevel to ERROR"""
+    OldLogLevel = logging.getLogger().getEffectiveLevel()
+    logging.getLogger().setLevel(_ERROR)
+    try:
+        yield
+    finally:
+        logging.getLogger().setLevel(OldLogLevel)
+
 
 
 ###############################################################
