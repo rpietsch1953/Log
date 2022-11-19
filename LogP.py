@@ -55,7 +55,7 @@ import netifaces
 import setproctitle
 
 
-__updated__ = '131.221119181154'
+__updated__ = '134.221119190247'
 Version = f"1.6.{__updated__}"
 
 
@@ -1471,39 +1471,42 @@ logging.status = partial(logging.log, _STATUS)
 logging.msg = partial(logging.log, _MSG)
 logging.trace = partial(logging.log, _TRACE)
 
-@contextlib.contextmanager
-def OtherLogLevel(NewLevel:Union[int,str]) -> None:
-    """Set temporary other LogLevel"""
-    wDict = { 'ERROR': _ERROR,
+
+class OtherLogLevel(object):
+    def __init__(self,NewLevel:Union[int,str]):
+        self.OldLogLevel = logging.getLogger().getEffectiveLevel()
+        self.wDict = { 'ERROR': _ERROR,
                 'STATUS': _STATUS,
                 'WARNING': _WARNING,
                 'MSG': _MSG,
                 'INFO': _INFO,
                 'DEBUG': _DEBUG,
                 'TRACE': _TRACE}
+        self.NewLevel = self.OldLogLevel
+        if isinstance(NewLevel,str):
+            NewLevel = NewLevel.upper()
+            if NewLevel in wDict:
+                self.NewLevel = wDict[NewLevel]
+        elif isinstance(NewLevel,int):   
+            self.NewLevel = NewLevel
+        
+    def __enter__(self) -> None:
+        logging.getLogger().setLevel(self.NewLevel)
 
-    OldLogLevel = logging.getLogger().getEffectiveLevel()
-    if isinstance(NewLevel,str):
-        NewLevel = NewLevel.upper()
-        if NewLevel in wDict:
-            NewLevel = wDict[NewLevel]
-        else:
-            NewLevel = OldLogLevel
-    logging.getLogger().setLevel(NewLevel)
-    try:
-        yield
-    finally:
-        logging.getLogger().setLevel(OldLogLevel)
+    def __exit__(self, type, value, traceback):
+        logging.getLogger().setLevel(self.OldLogLevel)   
 
-@contextlib.contextmanager
-def NoLogging() -> None:
+
+class NoLogging(object):
     """Set temporary loglevel to ERROR"""
-    OldLogLevel = logging.getLogger().getEffectiveLevel()
-    logging.getLogger().setLevel(_ERROR)
-    try:
-        yield
-    finally:
-        logging.getLogger().setLevel(OldLogLevel)
+    def __init__(self):
+        self.OldLogLevel = logging.getLogger().getEffectiveLevel()
+
+    def __enter__(self) -> None:
+        logging.getLogger().setLevel(_ERROR)
+
+    def __exit__(self, type, value, traceback):
+        logging.getLogger().setLevel(self.OldLogLevel)   
 
 
 
@@ -1512,106 +1515,106 @@ def NoLogging() -> None:
 ###############################################################
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    def abc():
-        """Na ja"""
-        logging.error('Error')
-        logging.status('Status')
-        logging.warning('Warning')
-        logging.msg('Msg')
-        logging.info('Info')
-        logging.debug('Debug')
-        # XXLogP.trace('Trace')
+#     def abc():
+#         """Na ja"""
+#         logging.error('Error')
+#         logging.status('Status')
+#         logging.warning('Warning')
+#         logging.msg('Msg')
+#         logging.info('Info')
+#         logging.debug('Debug')
+#         # XXLogP.trace('Trace')
 
-    def main():
-        """Main"""
-        MyParam = {}
-        MyParam['Verbose'] = 4
-        MyParam['StdErr'] = True
-        MyParam['NoDaemon'] = True
-        MyParam['Quiet'] = False
-        MyParam['LogPath'] = ''
-        MyParam['LogProcInfo'] = True
+#     def main():
+#         """Main"""
+#         MyParam = {}
+#         MyParam['Verbose'] = 4
+#         MyParam['StdErr'] = True
+#         MyParam['NoDaemon'] = True
+#         MyParam['Quiet'] = False
+#         MyParam['LogPath'] = ''
+#         MyParam['LogProcInfo'] = True
 
-    #    MyParam['LogPath'] = './TheLog.log'
-        AppName = "LogP"
-        try:
-            LogP.SetupLogging(AppName=AppName,
-                              Verbose=MyParam['Verbose'],
-                              StdErr=MyParam['StdErr'],
-                              NoDaemon=MyParam['NoDaemon'],
-                              Quiet=MyParam['Quiet'],
-                              LogPath=MyParam['LogPath'],
-                              LogLevelType=3,
-                              LogProcInfo=True,
-                              LogMultiProc=True,
-                              LogMultiThread=True,
-                              LogProcInfoModLen=15,
-                              LogProcInfoFuncLen=15,
-                              LogMultiProcLen=13,
-                              LogMultiThreadLen=12,
-                              LogDebugCacheSize=11,
-                              LogDebugIp='127.0.0.1',
-                              LogDebugPort=65432
-                              )
+#     #    MyParam['LogPath'] = './TheLog.log'
+#         AppName = "LogP"
+#         try:
+#             LogP.SetupLogging(AppName=AppName,
+#                               Verbose=MyParam['Verbose'],
+#                               StdErr=MyParam['StdErr'],
+#                               NoDaemon=MyParam['NoDaemon'],
+#                               Quiet=MyParam['Quiet'],
+#                               LogPath=MyParam['LogPath'],
+#                               LogLevelType=3,
+#                               LogProcInfo=True,
+#                               LogMultiProc=True,
+#                               LogMultiThread=True,
+#                               LogProcInfoModLen=15,
+#                               LogProcInfoFuncLen=15,
+#                               LogMultiProcLen=13,
+#                               LogMultiThreadLen=12,
+#                               LogDebugCacheSize=11,
+#                               LogDebugIp='127.0.0.1',
+#                               LogDebugPort=65432
+#                               )
 
-        except Exception as exc:                        # pylint: disable=W0703
-            print(exc)
-            sys.exit(1)
+#         except Exception as exc:                        # pylint: disable=W0703
+#             print(exc)
+#             sys.exit(1)
 
-        LogP.Stop()
+#         LogP.Stop()
 
-        LogP.SetupLogging(AppName=AppName,
-                          Verbose=MyParam['Verbose'],
-                          StdErr=MyParam['StdErr'],
-                          NoDaemon=MyParam['NoDaemon'],
-                          Quiet=MyParam['Quiet'],
-                          LogPath=MyParam['LogPath'],
-                          LogProcInfo=False,
-                          #                        LogStackOnDebug = "debug",
-                          #                        LogStackDepth=2,
-                          LogLevelType=0,
-                          LogMultiProc=False,
-                          LogMultiThread=False,
-                          LogProcInfoModLen=5,
-                          LogDebugPort=65432
-                          )
+#         LogP.SetupLogging(AppName=AppName,
+#                           Verbose=MyParam['Verbose'],
+#                           StdErr=MyParam['StdErr'],
+#                           NoDaemon=MyParam['NoDaemon'],
+#                           Quiet=MyParam['Quiet'],
+#                           LogPath=MyParam['LogPath'],
+#                           LogProcInfo=False,
+#                           #                        LogStackOnDebug = "debug",
+#                           #                        LogStackDepth=2,
+#                           LogLevelType=0,
+#                           LogMultiProc=False,
+#                           LogMultiThread=False,
+#                           LogProcInfoModLen=5,
+#                           LogDebugPort=65432
+#                           )
 
-        logging.error('Error')
-        logging.warning('Warning')
-        logging.info('Info')
-        logging.msg('Msg')
-        logging.status('Status')
-        logging.trace('Trace')
-        logging.debug('Debug')
-        abc()
-        LogP.Stop()
+#         logging.error('Error')
+#         logging.warning('Warning')
+#         logging.info('Info')
+#         logging.msg('Msg')
+#         logging.status('Status')
+#         logging.trace('Trace')
+#         logging.debug('Debug')
+#         abc()
+#         LogP.Stop()
 
-        LogP.SetupLogging(AppName=AppName,
-                          Verbose=MyParam['Verbose'],
-                          StdErr=MyParam['StdErr'],
-                          NoDaemon=MyParam['NoDaemon'],
-                          Quiet=MyParam['Quiet'],
-                          LogPath=MyParam['LogPath'],
-                          LogLevelType=3,
-                          LogProcInfo=True,
-                          LogMultiProc=False,
-                          LogMultiThread=False,
-                          LogProcInfoModLen=15,
-                          LogProcInfoFuncLen=15,
-                          LogLongLevel='DEBUG, Status',
-                          LogDebugPort=65432
-                          )
+#         LogP.SetupLogging(AppName=AppName,
+#                           Verbose=MyParam['Verbose'],
+#                           StdErr=MyParam['StdErr'],
+#                           NoDaemon=MyParam['NoDaemon'],
+#                           Quiet=MyParam['Quiet'],
+#                           LogPath=MyParam['LogPath'],
+#                           LogLevelType=3,
+#                           LogProcInfo=True,
+#                           LogMultiProc=False,
+#                           LogMultiThread=False,
+#                           LogProcInfoModLen=15,
+#                           LogProcInfoFuncLen=15,
+#                           LogLongLevel='DEBUG, Status',
+#                           LogDebugPort=65432
+#                           )
 
-        logging.error('Error')
-        logging.warning('Warning')
-        logging.info('Info')
-        logging.msg('Msg')
-        logging.status('Status')
-        logging.trace('Trace')
-        logging.debug('Debug')
-        abc()
-        LogP.Stop()
+#         logging.error('Error')
+#         logging.warning('Warning')
+#         logging.info('Info')
+#         logging.msg('Msg')
+#         logging.status('Status')
+#         logging.trace('Trace')
+#         logging.debug('Debug')
+#         abc()
+#         LogP.Stop()
 
-    main()
+#     main()
