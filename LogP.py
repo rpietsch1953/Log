@@ -55,7 +55,7 @@ import netifaces
 import setproctitle
 
 
-__updated__ = '134.221119190247'
+__updated__ = '137.221205144037'
 Version = f"1.6.{__updated__}"
 
 
@@ -122,6 +122,7 @@ class _LogP():
                 "{ClassName} 'LogLevelType' (= {LogLevelType}) can't be converted to an integer",
         }
         self.__LogServer = self.__DummyPortLogServer()
+        self.__LogLevel = 0
         self.__LogQueue: multiprocessing.Queue = multiprocessing.Queue()
         self._Translation = copy.deepcopy(self._InitTranslation)
         _Translation = self._Translation
@@ -1280,7 +1281,7 @@ Output format:
             LogLevel = _TRACE
         else:  # Quiet
             LogLevel = _ERROR
-
+        self.__LogLevel = LogLevel
         try:
             LogLevelType = int(LogLevelType)
         except:
@@ -1439,6 +1440,10 @@ Output format:
             qh.setLevel(1)
             logging.getLogger().addHandler(qh)
             self.__LogServer.Run()
+
+    @property
+    def LogLevel(self) -> int:
+        return self.__LogLevel
 
     @property
     def GetLogging(self) -> tuple:
